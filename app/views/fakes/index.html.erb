@@ -1,5 +1,14 @@
 <h1>Fakes#index</h1>
 
+<% if current_user %>
+	<h3>Welcome <%= current_user.name %></h3>
+<% end %>
+
+<div id="upload-image">
+	<%= link_to "Upload New Image", new_fake_path, remote: true %>
+</div>
+
+
 <% @fakes.each do |fake| %>
-	<%= fake.title %>
+	<%= image_tag fake.image.url(:medium), class: 'fake-news-image' %>
 <% end %>
