@@ -1,4 +1,11 @@
-.fake-news-image {
-	margin: 10px;
-	border: 2px solid black;
+.image-holder {
+	height: 300px; 
+	width: 300px; 
+	overflow: hidden;
+
+	.fake-news-image {
+		margin: 10px;
+		border: 2px solid black;
+		height: 300px;
+	}
 }

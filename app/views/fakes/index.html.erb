@@ -10,5 +10,7 @@
 
 
 <% @fakes.each do |fake| %>
-	<%= image_tag fake.image.url(:medium), class: 'fake-news-image' %>
+	<div class="image-holder">
+		<%= image_tag fake.image.url(:medium), class: 'fake-news-image' %>
+	</div>
 <% end %>
