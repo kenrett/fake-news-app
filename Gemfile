@@ -16,6 +16,8 @@ gem 'paperclip', '~> 5.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'simple_form'
 gem 'devise'
+gem 'jquery-rails'
+gem 'aws-sdk', '~> 2.3.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
