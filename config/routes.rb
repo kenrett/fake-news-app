@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  root to: "fake_news#index"
+  root to: "fakes#index"
+
+  devise_for :users
+  resources :fakes
+
+  get "/users/:id" => "users#show", as: 'user'
 end
