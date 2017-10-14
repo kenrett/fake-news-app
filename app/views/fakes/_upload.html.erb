@@ -1,4 +1,7 @@
 <%= simple_form_for @fake, url: fakes_path do |f| %>
+	<%= f.hidden_field :creator_id, value: current_user.id %>
+	<%= f.input :title %>
+	<%= f.input :source %>
   <%= f.input :image, as: :file %>
   <%= f.submit "Submit" %>
 <% end %>

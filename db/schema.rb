@@ -1,4 +1,4 @@
-  # This file is auto-generated from the current state of the database. Instead
+# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009003855) do
+ActiveRecord::Schema.define(version: 20171010014220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "fakes", force: :cascade do |t|
     t.string "title"
-    t.string "url"
     t.string "source"
-    t.string "creator_id"
+    t.integer "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_file_name"
@@ -46,4 +45,16 @@ ActiveRecord::Schema.define(version: 20171009003855) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "type"
+    t.bigint "fake_id"
+    t.bigint "vote_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fake_id"], name: "index_votes_on_fake_id"
+    t.index ["vote_id"], name: "index_votes_on_vote_id"
+  end
+
+  add_foreign_key "votes", "fakes"
+  add_foreign_key "votes", "votes"
 end

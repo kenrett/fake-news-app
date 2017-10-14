@@ -2,15 +2,21 @@
 
 <% if current_user %>
 	<h3>Welcome <%= current_user.name %></h3>
-<% end %>
 
-<div id="upload-image">
-	<%= link_to "Upload New Image", new_fake_path, remote: true %>
-</div>
-
-
-<% @fakes.each do |fake| %>
-	<div class="image-holder">
-		<%= image_tag fake.image.url(:medium), class: 'fake-news-image' %>
+	<div id="upload-image">
+		<%= link_to "Upload New Image", new_fake_path, remote: true %>
 	</div>
 <% end %>
+
+<div class="row">
+	<% @fakes.each do |fake| %>
+		<div class="image-holder">
+			<h5><%= fake.title %></h5>
+			<%= link_to image_tag(fake.image.url(:medium)), fake_path(fake), class: 'fake-news-image', id: "fake-#{fake.id}" %>
+			<h5><%= fake.source %></h5>
+			<% if logged_in? && is_creator?(fake) %>
+				<%= button_to "Delete", fake_path(fake), method: 'delete', remote: true, data: { confirm: 'Are you sure?' } %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
