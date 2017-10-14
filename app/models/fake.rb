@@ -1,5 +1,9 @@
 class Fake < ApplicationRecord
-	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png",
+	belongs_to :creator, class_name: :User
+
+	validates :creator_id, :source, presence: true
+
+	has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png",
                     :storage => :s3,
                     :s3_region => Rails.application.secrets[:region],
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
